@@ -8,7 +8,7 @@ public interface CrudService<T,ID> {
 
     public T save(T object);
 
-    public T finById(ID id);
+    public T findById(ID id);
 
     public void delete(T object);
 
