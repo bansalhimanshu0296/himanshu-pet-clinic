@@ -22,40 +22,31 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         Owner owner1 = new Owner();
-        owner1.setId(1L);
         owner1.setFirstName("Shivani");
         owner1.setLastName("Aggarwal");
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
-        owner2.setId(2L);
         owner2.setFirstName("Ilika");
         owner2.setLastName("Chitranshi");
 
         ownerService.save(owner2);
 
-
-
         System.out.println("Loaded Owners......");
 
         Vet vet1 = new Vet();
-        vet1.setId(1L);
         vet1.setFirstName("Himanshu");
         vet1.setLastName("Bansal");
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
-        vet2.setId(2L);
         vet2.setFirstName("Arjun");
         vet2.setLastName("Chauhan");
 
         vetService.save(vet2);
 
         System.out.println("Loaded Vets......");
-
-
-
     }
 }
