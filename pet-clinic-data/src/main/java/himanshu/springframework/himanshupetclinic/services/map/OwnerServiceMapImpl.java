@@ -27,19 +27,21 @@ public class OwnerServiceMapImpl extends AbstractMapService<Owner,Long> implemen
     @Override
     public Owner save(Owner object) {
         if (object != null) {
-            if(object.getPets()!=null){
-                object.getPets().forEach(pet->{
-                    if(pet.getPetType()!=null){
-                        if(pet.getPetType().getId()==null) {
-                            pet.setPetType(petTypeService.save(pet.getPetType()));
+            if(object.getPets()!=null) {
+                if (object.getPets().size() > 0) {
+                    object.getPets().forEach(pet -> {
+                        if (pet.getPetType() != null) {
+                            if (pet.getPetType().getId() == null) {
+                                pet.setPetType(petTypeService.save(pet.getPetType()));
+                            }
+                        } else {
+                            throw new RuntimeException("Pet Type is Required");
                         }
-                    }else{
-                        throw new RuntimeException("Pet Type is Required");
-                    }
-                    if(pet.getId()==null){
-                        pet.setId(petService.save(pet).getId());
-                    }
-                });
+                        if (pet.getId() == null) {
+                            pet.setId(petService.save(pet).getId());
+                        }
+                    });
+                }
             }
             return super.save(object);
         }
