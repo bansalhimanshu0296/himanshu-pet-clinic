@@ -2,8 +2,6 @@ package himanshu.springframework.himanshupetclinic.services.springdatajpa;
 
 import himanshu.springframework.himanshupetclinic.model.Owner;
 import himanshu.springframework.himanshupetclinic.repositories.OwnerRepository;
-import himanshu.springframework.himanshupetclinic.repositories.PetRepository;
-import himanshu.springframework.himanshupetclinic.repositories.PetTypeRepository;
 import himanshu.springframework.himanshupetclinic.services.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -16,14 +14,9 @@ import java.util.Set;
 public class OwnerSDJpaImpl implements OwnerService {
 
     private final OwnerRepository ownerRepository;
-    private final PetRepository petRepository;
-    private final PetTypeRepository petTypeRepository;
 
-    public OwnerSDJpaImpl(OwnerRepository ownerRepository, PetRepository petRepository,
-                          PetTypeRepository petTypeRepository) {
+    public OwnerSDJpaImpl(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
-        this.petRepository = petRepository;
-        this.petTypeRepository = petTypeRepository;
     }
 
     @Override
