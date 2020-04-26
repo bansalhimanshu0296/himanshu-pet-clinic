@@ -1,10 +1,7 @@
 package himanshu.springframework.himanshupetclinic.bootstrap;
 
 import himanshu.springframework.himanshupetclinic.model.*;
-import himanshu.springframework.himanshupetclinic.services.OwnerService;
-import himanshu.springframework.himanshupetclinic.services.PetTypeService;
-import himanshu.springframework.himanshupetclinic.services.SpecialityService;
-import himanshu.springframework.himanshupetclinic.services.VetService;
+import himanshu.springframework.himanshupetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +14,16 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
+    private final PetService petService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService, PetService petService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
+        this.petService = petService;
     }
 
 
@@ -85,8 +86,8 @@ public class DataLoader implements CommandLineRunner {
         owner2.setFirstName("Ilika");
         owner2.setLastName("Chitranshi");
         owner2.setAddress("F-706 Amrapali Princely Estate, Sector 76");
-        owner1.setCity("Noida");
-        owner1.setTelephone("2323212134");
+        owner2.setCity("Noida");
+        owner2.setTelephone("2323212134");
 
         Pet pet2 = new Pet();
         pet2.setPetType(savedCatPetType);
@@ -98,6 +99,17 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner2);
 
         System.out.println("Loaded Owners......");
+        Visit visit1 = new Visit();
+        visit1.setDate(LocalDate.now());
+        visit1.setPet(pet2);
+        visit1.setDescription("Sneezy Kitty");
+
+        visitService.save(visit1);
+        System.out.println("Loaded Visits......");
+
+        pet2.getVisits().add(visit1);
+        petService.save(pet2);
+        petService.save(pet1);
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Himanshu");
