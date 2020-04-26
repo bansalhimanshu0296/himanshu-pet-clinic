@@ -3,11 +3,13 @@ package himanshu.springframework.himanshupetclinic.services.map;
 import himanshu.springframework.himanshupetclinic.model.Vet;
 import himanshu.springframework.himanshupetclinic.services.SpecialityService;
 import himanshu.springframework.himanshupetclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default","map"})
 public class VetServiceMapImpl extends AbstractMapService<Vet,Long> implements VetService {
 
     private final SpecialityService specialityService;

@@ -2,9 +2,11 @@ package himanshu.springframework.himanshupetclinic.services.map;
 
 import himanshu.springframework.himanshupetclinic.model.Visit;
 import himanshu.springframework.himanshupetclinic.services.VisitService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile({"default","map"})
 public class VisitServiceMapImpl extends AbstractMapService<Visit,Long> implements VisitService {
     @Override
     public Visit save(Visit object) {
