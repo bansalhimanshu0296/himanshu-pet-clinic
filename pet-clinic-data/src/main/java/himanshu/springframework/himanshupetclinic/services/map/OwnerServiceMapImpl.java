@@ -7,6 +7,7 @@ import himanshu.springframework.himanshupetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -23,6 +24,13 @@ public class OwnerServiceMapImpl extends AbstractMapService<Owner,Long> implemen
 
     @Override
     public Set<Owner> findByLastName(String lastName) {
+
+        Set<Owner> owners = new HashSet<>();
+        this.findAll().forEach(owner -> {
+            if(owner.getLastName().equalsIgnoreCase(lastName))owners.add(owner);
+        });
+        if(owners.size()>0)
+        return owners;
         return null;
     }
 

@@ -8,7 +8,6 @@ import javax.persistence.Table;
 @Setter
 @Getter
 @AllArgsConstructor
-@Builder
 @ToString
 @NoArgsConstructor
 @Entity
@@ -17,4 +16,9 @@ public class Speciality extends BaseEntity {
 
     private String description;
 
+    @Builder
+    public Speciality(Long id, String description) {
+        super(id);
+        this.description = description;
+    }
 }

@@ -9,7 +9,6 @@ import java.util.Set;
 @Setter
 @Getter
 @AllArgsConstructor
-@Builder
 @ToString
 @Entity
 @Table(name = "vets")
@@ -25,4 +24,12 @@ public class Vet extends Person {
         specialities = new HashSet<>();
     }
 
+    @Builder
+    public Vet(Long id, String firstName, String lastName, Set<Speciality> specialities) {
+        super(id, firstName, lastName);
+        if(specialities!=null)
+            this.specialities = specialities;
+        else
+            this.specialities=new HashSet<>();
+    }
 }

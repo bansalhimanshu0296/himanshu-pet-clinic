@@ -6,6 +6,7 @@ import himanshu.springframework.himanshupetclinic.services.VetService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -20,6 +21,12 @@ public class VetServiceMapImpl extends AbstractMapService<Vet,Long> implements V
 
     @Override
     public Set<Vet> findByLastName(String lastName) {
+        Set<Vet> vets = new HashSet<>();
+        this.findAll().forEach(vet -> {
+            if(vet.getLastName().equalsIgnoreCase(lastName))vets.add(vet);
+        });
+        if(vets.size()>0)
+            return vets;
         return null;
     }
 
