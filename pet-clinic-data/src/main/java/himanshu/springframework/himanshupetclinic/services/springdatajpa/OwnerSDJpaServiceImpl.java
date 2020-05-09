@@ -21,11 +21,7 @@ public class OwnerSDJpaServiceImpl implements OwnerService {
 
     @Override
     public Set<Owner> findByLastName(String lastName) {
-        Set<Owner> owners = new HashSet<>();
-        ownerRepository.findAll().forEach(owner ->{
-            if(owner.getLastName().equalsIgnoreCase(lastName)) owners.add(owner);
-        });
-        return owners;
+        return ownerRepository.findByLastName(lastName);
     }
 
     @Override

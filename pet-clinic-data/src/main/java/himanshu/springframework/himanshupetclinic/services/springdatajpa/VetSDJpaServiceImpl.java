@@ -21,11 +21,7 @@ public class VetSDJpaServiceImpl implements VetService {
 
     @Override
     public Set<Vet> findByLastName(String lastName) {
-        Set<Vet> vets = new HashSet<>();
-        vetRepository.findAll().forEach(vet ->{
-            if(vet.getLastName().equalsIgnoreCase(lastName)) vets.add(vet);
-        });
-        return vets;
+        return vetRepository.findByLastName(lastName);
     }
 
     @Override
